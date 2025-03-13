@@ -1,12 +1,12 @@
-import { BadRequestException, Body, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Teste, TesteEntity } from './teste.entity';
+import { User, UserEntity } from './entities/teste.entity';
 import { Repository } from 'typeorm';
 import { IsEmail, IsNotEmpty } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { PasswordEncoderService } from './password-encoder.service';
 
-export class CreateTesteRequest {
+export class CreateUserRequest {
   @ApiProperty()
   @IsEmail()
   email: string;
@@ -16,7 +16,7 @@ export class CreateTesteRequest {
   password: string;
 }
 
-export class ValidateTesteRequest {
+export class ValidateUserRequest {
   @ApiProperty()
   @IsEmail()
   email: string;
@@ -29,11 +29,11 @@ export class ValidateTesteRequest {
 @Injectable()
 export class AppService {
   constructor(
-    @InjectRepository(TesteEntity) private testeRepository: Repository<Teste>,
+    @InjectRepository(UserEntity) private testeRepository: Repository<User>,
     private passwordEncoder: PasswordEncoderService,
   ) {}
 
-  async create(createTesteRequest: CreateTesteRequest): Promise<Teste> {
+  async create(createTesteRequest: CreateUserRequest): Promise<User> {
     const existingTeste = await this.testeRepository.findOneBy({
       email: createTesteRequest.email,
     });
@@ -48,7 +48,7 @@ export class AppService {
     return await this.testeRepository.save(createTesteRequest);
   }
 
-  async validate(validate: ValidateTesteRequest) {
+  async validate(validate: ValidateUserRequest) {
     const testeFind = await this.testeRepository.findOneBy({
       email: validate.email,
     });

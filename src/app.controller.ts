@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import {
   AppService,
-  CreateTesteRequest,
-  ValidateTesteRequest,
+  CreateUserRequest,
+  ValidateUserRequest,
 } from './app.service';
 
 @Controller()
@@ -10,12 +10,12 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Post()
-  createNewTeste(@Body() ctr: CreateTesteRequest) {
+  createNewTeste(@Body() ctr: CreateUserRequest) {
     return this.appService.create(ctr);
   }
 
-  @Post("/validate")
-  validate(@Body() dataValidate: ValidateTesteRequest) {
+  @Post('/validate')
+  validate(@Body() dataValidate: ValidateUserRequest) {
     return this.appService.validate(dataValidate);
   }
 

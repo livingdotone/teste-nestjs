@@ -1,13 +1,13 @@
 import { EntitySchema } from 'typeorm';
 
-export interface Teste {
+export interface User {
   id: number;
   email: string;
   password: string;
 }
 
-export const TesteEntity = new EntitySchema<Teste>({
-  name: 'teste',
+export const UserEntity = new EntitySchema<User>({
+  name: 'user',
   columns: {
     id: {
       type: Number,
