@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TesteEntity } from './teste.entity';
+import { PasswordEncoderService } from './password-encoder.service';
 
 @Module({
   imports: [
@@ -19,6 +20,6 @@ import { TesteEntity } from './teste.entity';
     TypeOrmModule.forFeature([TesteEntity]),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, PasswordEncoderService],
 })
 export class AppModule {}
