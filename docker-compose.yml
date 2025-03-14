@@ -14,6 +14,15 @@ services:
       - DB_USER=dockerdb
       - DB_PASSWORD=dockerdb
       - DB_NAME=teste_nestjs
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7' # limita a 70% de 1 vcpu
+          memory: '2G' # limita a 2 gb de ram
+        reservations:
+          cpus: '0.5' # garante 50% da cpu
+          memory: '1G' # reserva 1gb de ram para o app
+
   db:
     image: 'postgres:latest'
     container_name: testando_nestjs_db
@@ -25,6 +34,14 @@ services:
       - '5432:5432'
     networks:
       - internal_network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3' # limita o banco a 30% da cpu
+          memory: '1G' # limita o banco a 1 gb de ram
+        reservations:
+          cpus: '0.2' # reserva 20% da cpu para o banco
+          memory: '512M' # reserva 512mb para o banco
 
 networks:
   internal_network:
