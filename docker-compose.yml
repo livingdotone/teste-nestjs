@@ -1,0 +1,31 @@
+services:
+  testando_nestjs_app:
+    build: .
+    container_name: testando_nestjs_app
+    ports:
+      - '3000:3000'
+    networks:
+      - internal_network
+    depends_on:
+      - db
+    environment:
+      - NODE_ENV=docker
+      - DB_HOST=db
+      - DB_USER=dockerdb
+      - DB_PASSWORD=dockerdb
+      - DB_NAME=teste_nestjs
+  db:
+    image: 'postgres:latest'
+    container_name: testando_nestjs_db
+    environment:
+      - 'POSTGRES_DB=teste_nestjs'
+      - 'POSTGRES_USER=dockerdb'
+      - 'POSTGRES_PASSWORD=dockerdb'
+    ports:
+      - '5432:5432'
+    networks:
+      - internal_network
+
+networks:
+  internal_network:
+    driver: bridge
