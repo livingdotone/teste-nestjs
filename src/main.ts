@@ -10,6 +10,7 @@ async function bootstrap() {
     .setDescription('API de Teste')
     .setVersion('0.0')
     .addTag('teste')
+    .addBearerAuth()
     .build();
 
   const documentFactory = () =>

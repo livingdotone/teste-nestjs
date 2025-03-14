@@ -2,8 +2,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './entities/teste.entity';
-import { PasswordEncoderService } from './password-encoder.service';
+import { UserEntity } from './user/user.entity';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './user/users.module';
+import { CoreModule } from './core/core.module';
 
 @Module({
   imports: [
@@ -16,11 +18,14 @@ import { PasswordEncoderService } from './password-encoder.service';
       database: 'teste_nestjs',
       synchronize: true,
       entities: [UserEntity],
-      migrations: ["../migrations/*.ts"]
+      migrations: ['../migrations/*.ts'],
     }),
     TypeOrmModule.forFeature([UserEntity]),
+    AuthModule,
+    UsersModule,
+    CoreModule,
   ],
   controllers: [AppController],
-  providers: [AppService, PasswordEncoderService],
+  providers: [AppService],
 })
 export class AppModule {}
