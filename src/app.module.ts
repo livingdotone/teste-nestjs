@@ -8,9 +8,11 @@ import { UsersModule } from './user/users.module';
 import { CoreModule } from './core/core.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './core/config';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
+    CacheModule.register(),
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configuration],
@@ -30,7 +32,7 @@ import configuration from './core/config';
         entities: [UserEntity],
         logging: true,
         extra: {
-          max: "10"
+          max: "20"
         }
       }),
     }),

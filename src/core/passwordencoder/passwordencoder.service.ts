@@ -6,9 +6,9 @@ export class PasswordEncoderService {
   async encode(password: string): Promise<string> {
     return await argon2.hash(password, {
       type: argon2.argon2id,
-      memoryCost: 2 ** 12,
+      memoryCost: 2 ** 10,
       timeCost: 2,
-      parallelism: 2,
+      parallelism: 1,
     });
   }
 

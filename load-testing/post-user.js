@@ -28,5 +28,5 @@ export default function () {
   });
 
   // Aguardar um curto tempo antes da próxima execução
-  sleep(1);
+  sleep(5);
 }

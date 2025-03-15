@@ -13,6 +13,10 @@ export class UsersService {
     private readonly passwordEncoder: PasswordEncoderService,
   ) {}
 
+  async findAll(): Promise<User[]> {
+    return await this.userRepository.find();
+  }
+
   async create(createUserRequest: CreateUserRequest): Promise<User> {
     const existingUser = await this.userRepository.findOneBy({
       email: createUserRequest.email,
