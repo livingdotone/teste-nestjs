@@ -29,6 +29,9 @@ import configuration from './core/config';
         synchronize: true,
         entities: [UserEntity],
         logging: true,
+        extra: {
+          max: "10"
+        }
       }),
     }),
     TypeOrmModule.forFeature([UserEntity]),

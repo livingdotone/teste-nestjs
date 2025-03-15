@@ -17,11 +17,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.7' # limita a 70% de 1 vcpu
-          memory: '2G' # limita a 2 gb de ram
+          cpus: '1' # 100% de um core para lidar com alta carga
+          memory: '2G' # Limite de 2 GB de RAM para a aplicação
         reservations:
-          cpus: '0.5' # garante 50% da cpu
-          memory: '1G' # reserva 1gb de ram para o app
+          cpus: '0.5' # Reserva 50% de um core
+          memory: '1G' # Reserva 1 GB de RAM para a aplicação
 
   db:
     image: 'postgres:latest'
@@ -37,11 +37,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.3' # limita o banco a 30% da cpu
-          memory: '1G' # limita o banco a 1 gb de ram
+          cpus: '1' # 100% de um core para o banco
+          memory: '2G' # Limite de 2 GB de RAM para o banco
         reservations:
-          cpus: '0.2' # reserva 20% da cpu para o banco
-          memory: '512M' # reserva 512mb para o banco
+          cpus: '0.5' # Reserva 50% de um core para o banco
+          memory: '1G' # Reserva 1 GB de RAM para o banco
 
 networks:
   internal_network:

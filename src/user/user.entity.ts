@@ -21,4 +21,11 @@ export const UserEntity = new EntitySchema<User>({
       type: String,
     },
   },
+  indices: [
+    {
+      name: 'IDX_EMAIL_USER',
+      unique: true,
+      columns: ['email'],
+    },
+  ],
 });
